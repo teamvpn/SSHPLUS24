@@ -1202,8 +1202,9 @@ exit 0' > $RCLOCAL
 			IP="$IP2"
 	fi
 	# client-common.txt is created so we have a template to add further users later
+
+		# OVPN_ACCESS_SERVER_PROFILE=[KH-VPN ฟรีสคริปต์]
 	echo "client
-# OVPN_ACCESS_SERVER_PROFILE=[KH-VPN ฟรีสคริปต์]	
 dev tun
 proto $PROTOCOL
 sndbuf 0
@@ -1211,7 +1212,7 @@ rcvbuf 0
 setenv opt method GET
 remote /SSHPLUS? $porta
 http-proxy-option CUSTOM-HEADER Host portalrecarga.vivo.com.br/recarga
-http-proxy $IP 8080
+http-proxy $IP 80
 resolv-retry 5
 nobind
 persist-key
