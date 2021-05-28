@@ -128,10 +128,7 @@ done
 			elif [[ -d "/etc/squid3/" ]]; then
 				var_sqd="/etc/squid3/squid.conf"
 				var_pay="/etc/squid3/payload.txt"
-			else
-				echo -e "\n\033[1;33m[\033[1;31mERRO\033[1;33m]\033[1;37m: \033[1;33mO SQUID PROXY CORROMPEU\033[0m"
-				sleep 2
-				fun_conexao
+			
 fi
 echo ".claro.com.br/
 .claro.com.sv/
