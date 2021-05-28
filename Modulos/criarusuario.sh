@@ -258,62 +258,62 @@ else
     sizemin=$(echo ${#username})
     if [[ $sizemin -lt 2 ]]
     then
-      tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um nome de usuário muito curto," ; echo "use no mínimo dois caracteres!" ; echo "" ; tput sgr0
+      tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณป้อนชื่อผู้ใช้ที่สั้นมาก," ; echo "ใช้อักขระอย่างน้อยสองตัว!" ; echo "" ; tput sgr0
       exit 1
     else
       sizemax=$(echo ${#username})
       if [[ $sizemax -gt 10 ]]
       then
-        tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um nome de usuário muito grande," ; echo "use no máximo 10 caracteres!" ; echo "" ; tput sgr0
+        tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณป้อนชื่อผู้ใช้ที่ยาวมาก," ; echo "ใช้อักขระได้สูงสุด 10 ตัว !" ; echo "" ; tput sgr0
         exit 1
       else
         if [[ -z $username ]]
         then
-          tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um nome de usuário vazio!" ; echo "" ; tput sgr0
+          tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณป้อนชื่อผู้ใช้ที่ว่างเปล่า!" ; echo "" ; tput sgr0
           exit 1
         else  
-           echo -ne "\033[1;32mpasswor:\033[1;37m "; read password
+           echo -ne "\033[1;32mPassword:\033[1;37m "; read password
           if [[ -z $password ]]
           then
-            tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou uma senha vazia!" ; echo "" ; tput sgr0
+            tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "เสียงสะท้อน "คุณป้อนรหัสผ่านว่างเปล่า!" ; echo "" ; tput sgr0
             exit 1
           else
             sizepass=$(echo ${#password})
             if [[ $sizepass -lt 4 ]]
             then
-              tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Senha curta!, use no mínimo 4 caracteres" ; echo "" ; tput sgr0
+              tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "รหัสผ่านแบบสั้น! กรุณาใส่ย่างน้อย 4 ตัว " ; echo "" ; tput sgr0
               exit 1
             else  
-                echo -ne "\033[1;32mDias Para Expirar:\033[1;37m "; read dias
+                echo -ne "\033[1;32mExpiration Date:\033[1;37m "; read dias
               if (echo $dias | egrep '[^0-9]' &> /dev/null)
               then
-                tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um número de dias inválido!" ; echo "" ; tput sgr0
+                tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณใส่จำนวนวันที่ไม่ถูกต้อง!" ; echo "" ; tput sgr0
                 exit 1
               else
                 if [[ -z $dias ]]
                 then
-                  tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você deixou o número de dias para a conta expirar vazio!" ; echo "" ; tput sgr0
+                  tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณปล่อยให้จำนวนวันที่บัญชีหมดอายุว่างเปล่า!" ; echo "" ; tput sgr0
                   exit 1
                 else  
                   if [[ $dias -lt 1 ]]
                   then
-                    tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você deve digitar um número de dias maior que zero!" ; echo "" ; tput sgr0
+                    tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณต้องใส่จำนวนวันที่มากกว่าศูนย์!" ; echo "" ; tput sgr0
                     exit 1
                   else
-                      echo -ne "\033[1;32mLimite De Conexões:\033[1;37m "; read sshlimiter
+                      echo -ne "\033[1;32mConnection Limited:\033[1;37m "; read sshlimiter
                     if (echo $sshlimiter | egrep '[^0-9]' &> /dev/null)
                     then
-                      tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um número de conexões inválido!" ; echo "" ; tput sgr0
+                      tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณใส่หมายเลขการเชื่อมต่อที่ไม่ถูกต้อง !" ; echo "" ; tput sgr0
                       exit 1
                     else
                       if [[ -z $sshlimiter ]]
                       then
-                        tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você deixou o limite de conexões vazio!" ; echo "" ; tput sgr0
+                        tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณปล่อยให้ขีด จำกัด การเชื่อมต่อว่างเปล่า!" ; echo "" ; tput sgr0
                         exit 1
                       else
                         if [[ $sshlimiter -lt 1 ]]
                         then
-                          tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Número de conexões simultâneas deve ser maior que zero!" ; echo "" ; tput sgr0
+                          tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "จำนวนการเชื่อมต่อพร้อมกันต้องมากกว่าศูนย์!" ; echo "" ; tput sgr0
                           exit 1
                         else
                           final=$(date "+%Y-%m-%d" -d "+$dias days")
@@ -324,11 +324,11 @@ else
                           echo "$password" > /etc/SSHPlus/senha/$username
                           echo "$username $sshlimiter" >> /root/usuarios.db
                           if [[ -e /etc/openvpn/server.conf ]]; then
-                              echo -ne "\033[1;32mGerar Arquivo Ovpn \033[1;31m? \033[1;33m[s/n]:\033[1;37m "; read resp
+                              echo -ne "\033[1;32mGenerate Ovpn File\033[1;31m? \033[1;33m[Y/n]:\033[1;37m "; read resp
                               if [[ "$resp" = @(s|S) ]]; then
                                 rm $username.zip $username.ovpn > /dev/null 2>&1
-                                echo -ne "\033[1;32mGerar Com usuário e Senha \033[1;31m? \033[1;33m[s/n]:\033[1;37m "; read respost
-                                echo -ne "\033[1;32mHost Atual\033[1;37m: \033[1;31m(\033[1;37m$Host\033[1;31m) \033[1;37m- \033[1;32mAlterar \033[1;31m? \033[1;33m[s/n]:\033[1;37m "; read oprc
+                                echo -ne "\033[1;32mGenerate with username and password \033[1;31m? \033[1;33m[Y/n]:\033[1;37m "; read respost
+                                echo -ne "\033[1;32mCurrent Host\033[1;37m: \033[1;31m(\033[1;37m$Host\033[1;31m) \033[1;37m- \033[1;32mChange\033[1;31m? \033[1;33m[Y/n]:\033[1;37m "; read oprc
                                 if [[ "$oprc" = @(s|S) ]]; then
                                   fun_edithost
                                 else
