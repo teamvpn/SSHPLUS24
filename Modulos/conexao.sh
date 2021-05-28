@@ -81,27 +81,29 @@ if netstat -nltp|grep 'squid' 1>/dev/null 2>/dev/null;then
 else
 clear
 echo -e "\E[44;1;37m              INSTALADOR SQUID                \E[0m"
-echo ""
-IP=$(wget -qO- ipv4.icanhazip.com)
-echo -ne "\033[1;32mPARA CONTINUAR CONFIRME SEU IP: \033[1;37m"; read -e -i $IP ipdovps
-if [[ -z "$ipdovps" ]];then
-echo -e "\n\033[1;31mIP invalido\033[1;32m"
-echo ""
-read -p "Digite seu IP: " IP
-fi
-echo -e "\n\033[1;33mQUAIS PORTAS DESEJA ULTILIZAR NO SQUID \033[1;31m?"
-echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mDEFINA AS PORTAS EM SEQUENCIA \033[1;33mEX: \033[1;37m80 8080 8799 3128"
-echo ""
-echo -ne "\033[1;32mINFORME AS PORTAS\033[1;37m: "; read portass
-if [[ -z "$portass" ]]; then
-	echo -e "\n\033[1;31mPorta invalida!"
-	sleep 3
-	fun_conexao
-fi
-for porta in $(echo -e $portass); do
-	verif_ptrs $porta
-done
-[[ $(grep -wc '14' /etc/issue.net) != '0' ]] || [[ $(grep -wc '8' /etc/issue.net) != '0' ]] && {
+			echo ""
+			IP=$(wget -qO- ipv4.icanhazip.com)
+			echo -ne "\033[1;32mPARA CONTINUAR CONFIRME SEU IP: \033[1;37m"
+			read -e -i $IP ipdovps
+			[[ -z "$ipdovps" ]] && {
+				echo -e "\n\033[1;31mIP invalido\033[1;32m"
+				echo ""
+				read -p "Digite seu IP: " IP
+			}
+			echo -e "\n\033[1;33mQUAIS PORTAS DESEJA ULTILIZAR NO SQUID \033[1;31m?"
+			echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mDEFINA AS PORTAS EM SEQUENCIA \033[1;33mEX: \033[1;37m80 8080"
+			echo ""
+			echo -ne "\033[1;32mINFORME AS PORTAS\033[1;37m: "
+			read portass
+			[[ -z "$portass" ]] && {
+				echo -e "\n\033[1;31mPorta invalida!"
+				sleep 3
+				fun_conexao
+			}
+			for porta in $(echo -e $portass); do
+				verif_ptrs $porta
+			done
+			[[ $(grep -wc '14' /etc/issue.net) != '0' ]] || [[ $(grep -wc '8' /etc/issue.net) != '0' ]] && {
 				echo -e "\n\033[1;32mINSTALANDO SQUID PROXY\033[0m\n"
 				fun_bar 'apt update -y' "apt install squid3 -y"
 			} || {
@@ -128,7 +130,10 @@ done
 			elif [[ -d "/etc/squid3/" ]]; then
 				var_sqd="/etc/squid3/squid.conf"
 				var_pay="/etc/squid3/payload.txt"
-			
+			else
+				echo -e "\n\033[1;33m[\033[1;31mERRO\033[1;33m]\033[1;37m: \033[1;33mO SQUID PROXY CORROMPEU\033[0m"
+				sleep 2
+				fun_conexao
 fi
 echo ".claro.com.br/
 .claro.com.sv/
@@ -1220,8 +1225,6 @@ exit 0' > $RCLOCAL
 			IP="$IP2"
 	fi
 	# client-common.txt is created so we have a template to add further users later
-
-		# OVPN_ACCESS_SERVER_PROFILE=[KH-VPN ฟรีสคริปต์]
 	echo "client
 dev tun
 proto $PROTOCOL
