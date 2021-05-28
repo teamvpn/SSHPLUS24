@@ -324,11 +324,11 @@ else
                           echo "$password" > /etc/SSHPlus/senha/$username
                           echo "$username $sshlimiter" >> /root/usuarios.db
                           if [[ -e /etc/openvpn/server.conf ]]; then
-                              echo -ne "\033[1;32mGenerate Ovpn File \033[1;31m? \033[1;33m[y/n]:\033[1;37m "; read resp
+                              echo -ne "\033[1;32mGenerate Ovpn File \033[1;31m? \033[1;33m[s/n]:\033[1;37m "; read resp
                               if [[ "$resp" = @(s|S) ]]; then
                                 rm $username.zip $username.ovpn > /dev/null 2>&1
-                                echo -ne "\033[1;32mGenerate with username and password \033[1;31m? \033[1;33m[y/n]:\033[1;37m "; read respost
-                                echo -ne "\033[1;32mCurrent Host\033[1;37m: \033[1;31m(\033[1;37m$Host\033[1;31m) \033[1;37m- \033[1;32mChange \033[1;31m? \033[1;33m[y/n]:\033[1;37m "; read oprc
+                                echo -ne "\033[1;32mGenerate with username and password \033[1;31m? \033[1;33m[s/n]:\033[1;37m "; read respost
+                                echo -ne "\033[1;32mCurrent Host\033[1;37m: \033[1;31m(\033[1;37m$Host\033[1;31m) \033[1;37m- \033[1;32mChange \033[1;31m? \033[1;33m[s/n]:\033[1;37m "; read oprc
                                 if [[ "$oprc" = @(s|S) ]]; then
                                   fun_edithost
                                 else
