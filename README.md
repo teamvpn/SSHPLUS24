@@ -31,17 +31,18 @@ apt-get update -y; apt-get upgrade -y; wget https://raw.githubusercontent.com/te
 -------------------------------------------------------------------------------
 
 ```
-* SIN MINERIA! 
-* SIN KEYS! 
-* VERSION GRATUITA 
-* SIN VIRUS TROJANO (BOTNET) 
-* ARCHIVOS LIBERADOS (DECENCRIPTADOS)
-```
+* SIN SIN MINERIA!
+ * SIN KEYS!
+ * FREE VERSION
+ * SIN VIRUS TROJANO (BOTNET)
+ * FILES RELEASED (DECENCRYPTED)
+ ``! 
+
 
 ```
-☆ https://t.me/admmanagerfree ☆
+☆ https://t.me/dev_vpn ☆
 
-☆ https://github.com/AAAAAEXQOSyIpN2JZ0ehUQ ☆
+☆ https://github.com/teamvpn ☆
 ```
 
 **By: [ FULL SCRIPTS ⃘⃤꙰✰ ]**
