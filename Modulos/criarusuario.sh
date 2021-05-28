@@ -247,12 +247,12 @@ echo -ne "\033[1;32mUsername:\033[1;37m "; read username
 awk -F : ' { print $1 }' /etc/passwd > /tmp/users 
 if grep -Fxq "$username" /tmp/users
 then
-  tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Este usuário já existe. tente outro nome." ; echo "" ; tput sgr0
+  tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "มีผู้ใช้รายนี้แล้ว  ลองใช้ชื่ออื่น." ; echo "" ; tput sgr0
   exit 1  
 else
   if (echo $username | egrep [^a-zA-Z0-9.-_] &> /dev/null)
   then
-    tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "Você digitou um nome de usuário inválido!" ; tput setab 1 ; echo "Use apenas letras, números, pontos e traços." ; tput setab 4 ; echo "Não use espaços, acentos ou caracteres especiais!" ; echo "" ; tput sgr0
+    tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "คุณป้อนชื่อผู้ใช้ที่ไม่ถูกต้อง!" ; tput setab 1 ; echo "ใช้เฉพาะตัวอักษรตัวเลขจุดและขีดกลาง ." ; tput setab 4 ; echo "Não use espaços, acentos ou caracteres especiais!" ; echo "" ; tput sgr0
     exit 1
   else
     sizemin=$(echo ${#username})
