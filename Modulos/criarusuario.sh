@@ -73,7 +73,7 @@ ${comando[1]} > /dev/null 2>&1
 touch $HOME/fim
  ) > /dev/null 2>&1 &
  tput civis
-echo -ne "\033[1;33mAGUARDE \033[1;37m- \033[1;33m["
+echo -ne "\033[1;33mโปรดรอสักครู่... \033[1;37m- \033[1;33m["
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m#"
@@ -84,16 +84,16 @@ while true; do
    sleep 1s
    tput cuu1
    tput dl1
-   echo -ne "\033[1;33mAGUARDE \033[1;37m- \033[1;33m["
+   echo -ne "\033[1;33mโปรดรอสักครู่... \033[1;37m- \033[1;33m["
 done
 echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
 tput cnorm
 }
 fun_edithost () {
   clear
-  echo -e "\E[44;1;37m          ALTERAR HOST OVPN            \E[0m"
+  echo -e "\E[44;1;37m          เปลี่ยน HOST OVPN            \E[0m"
   echo ""
-  echo -e "\033[1;33mHOST EM USO\033[1;37m: \033[1;32m$Host"
+  echo -e "\033[1;33mโฮสต์ในการใช้งาน\033[1;37m: \033[1;32m$Host"
   echo ""
   echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;33mVIVO RECARGA"
   echo -e "\033[1;31m[\033[1;36m2\033[1;31m] \033[1;33mVIVO NAVEGUE PRE"
@@ -341,8 +341,8 @@ else
                                   fi
                                 }
                                 clear
-                                echo -e "\E[44;1;37m       CONTA SSH CRIADA !      \E[0m"
-                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsuário: \033[1;37m$username" ; echo -e "\033[1;32mSenha: \033[1;37m$password" ; echo -e "\033[1;32mExpira em: \033[1;37m$gui" ; echo -e "\033[1;32mLimite de conexões: \033[1;37m$sshlimiter" ; echo "" || echo "Não foi possível criar o usuário!" ; tput sgr0
+                                echo -e "\E[44;1;37m       สร้างบัญชี SSH แล้ว !      \E[0m"
+                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32musername: \033[1;37m$username" ; echo -e "\033[1;32mpassword: \033[1;37m$password" ; echo -e "\033[1;32mExpiration date: \033[1;37m$gui" ; echo -e "\033[1;32mConnection limit: \033[1;37m$sshlimiter" ; echo "" ||echo "ไม่สามารถสร้างผู้ใช้ได้! echo "!" ; tput sgr0
                                 sleep 1
                                 function aguarde {
                                   helice () {
@@ -358,7 +358,7 @@ else
                                     done
                                     tput cnorm
                                   }
-                                  echo -ne "\033[1;31mCRIANDO OVPN\033[1;33m.\033[1;31m. \033[1;32m"
+                                  echo -ne "\033[1;31mการสร้าง OVPN\033[1;33m.\033[1;31m. \033[1;32m"
                                   helice
                                   echo -e "\e[1DOK"
                                 }
@@ -378,13 +378,13 @@ else
                                 fi
                               else
                                 clear
-                                echo -e "\E[44;1;37m       CONTA SSH CRIADA !      \E[0m"
-                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsuário: \033[1;37m$username" ; echo -e "\033[1;32mSenha: \033[1;37m$password" ; echo -e "\033[1;32mExpira em: \033[1;37m$gui" ; echo -e "\033[1;32mLimite de conexões: \033[1;37m$sshlimiter" ; echo "" || echo "Não foi possível criar o usuário!" ; tput sgr0
+                                echo -e "\E[44;1;37m       สร้างบัญชีผู้ใช้งาน !      \E[0m"
+                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsername: \033[1;37m$username" ; echo -e "\033[1;32mPassword: \033[1;37m$password" ; echo -e "\033[1;32mExpiration Date: \033[1;37m$gui" ; echo -e "\033[1;32mConnection Limited: \033[1;37m$sshlimiter" ; echo "" || echo "ไม่สามารถสร้างบัญชีผู้ใช้ได้!" ; tput sgr0
                               fi
                           else
                             clear
-                            echo -e "\E[44;1;37m       CONTA SSH CRIADA !      \E[0m"
-                            [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsuário: \033[1;37m$username" ; echo -e "\033[1;32mSenha: \033[1;37m$password" ; echo -e "\033[1;32mExpira em: \033[1;37m$gui" ; echo -e "\033[1;32mLimite de conexões: \033[1;37m$sshlimiter" ; echo "" || echo "Não foi possível criar o usuário!" ; tput sgr0
+                            echo -e "\E[44;1;37m       สร้างบัญชีผู้ใช้งาน !      \E[0m"
+                            [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsername: \033[1;37m$username" ; echo -e "\033[1;32mPassword: \033[1;37m$password" ; echo -e "\033[1;32mExpiration Date: \033[1;37m$gui" ; echo -e "\033[1;32mConnection Limited: \033[1;37m$sshlimiter" ; echo "" || echo "ไม่สามารถสร้างบัญชีผู้ใช้ได้!" ; tput sgr0
                           fi
                         fi
                       fi
