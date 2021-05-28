@@ -90,7 +90,7 @@ echo ""
 read -p "Digite seu IP: " IP
 fi
 echo -e "\n\033[1;33mQUAIS PORTAS DESEJA ULTILIZAR NO SQUID \033[1;31m?"
-echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mDEFINA AS PORTAS EM SEQUENCIA \033[1;33mEX: \033[1;37m80 8080 8799"
+echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mDEFINA AS PORTAS EM SEQUENCIA \033[1;33mEX: \033[1;37m80 8080 8799 3128"
 echo ""
 echo -ne "\033[1;32mINFORME AS PORTAS\033[1;37m: "; read portass
 if [[ -z "$portass" ]]; then
@@ -101,16 +101,37 @@ fi
 for porta in $(echo -e $portass); do
 	verif_ptrs $porta
 done
-echo -e "\n\033[1;32mINSTALANDO SQUID PROXY\033[0m"
-echo ""
-fun_bar 'apt-get update -y' 'apt-get install squid3 -y'
-sleep 1
-if [[ -d "/etc/squid/" ]]; then
-var_sqd="/etc/squid/squid.conf"
-var_pay="/etc/squid/payload.txt"
-elif [[ -d "/etc/squid3/" ]]; then
-var_sqd="/etc/squid3/squid.conf"
-var_pay="/etc/squid3/payload.txt"
+[[ $(grep -wc '14' /etc/issue.net) != '0' ]] || [[ $(grep -wc '8' /etc/issue.net) != '0' ]] && {
+				echo -e "\n\033[1;32mINSTALANDO SQUID PROXY\033[0m\n"
+				fun_bar 'apt update -y' "apt install squid3 -y"
+			} || {
+				echo -e "\n\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mSQUID VERSAO 3.3.X\n\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mSQUID VERSAO 3.5.X\033[0m\n"
+				read -p "$(echo -e "\033[1;32mINFORME UMA OPÇÃO \033[1;37m: ")" -e -i 1 opc
+				[[ -z "$opc" ]] && {
+					echo -e "\n\033[1;31mOpcao invalida!"
+					sleep 2
+					fun_conexao
+				}
+				[[ "$opc" != '1' ]] && {
+					[[ "$opc" != '2' ]] && {
+						echo -e "\n\033[1;31mOpcao invalida !"
+						sleep 2
+						fun_conexao
+					}
+				}
+				echo -e "\n\033[1;32mINSTALANDO SQUID PROXY\033[0m\n"
+				fun_bar 'apt update -y' "instsqd $opc"
+			}
+			if [[ -d "/etc/squid/" ]]; then
+				var_sqd="/etc/squid/squid.conf"
+				var_pay="/etc/squid/payload.txt"
+			elif [[ -d "/etc/squid3/" ]]; then
+				var_sqd="/etc/squid3/squid.conf"
+				var_pay="/etc/squid3/payload.txt"
+			else
+				echo -e "\n\033[1;33m[\033[1;31mERRO\033[1;33m]\033[1;37m: \033[1;33mO SQUID PROXY CORROMPEU\033[0m"
+				sleep 2
+				fun_conexao
 fi
 echo ".claro.com.br/
 .claro.com.sv/
